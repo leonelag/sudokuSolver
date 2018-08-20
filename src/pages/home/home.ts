@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Form } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -48,6 +48,12 @@ export class HomePage implements AfterViewInit {
   }
 
   upload(blob) {
-    console.log("upload");
+    const formData = new FormData();
+    formData.append("image", blob);
+
+    const xhr = new XMLHttpRequest();
+    const async = true;
+    xhr.open("POST", "/api/solve", async);
+    xhr.send(formData);
   }
 }
